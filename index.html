@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>讀書與未來選擇</title>
+    <script>
+        function askQuestion() {
+            let a = prompt("接下來的問題如果答案是肯定的就輸入11，否定就輸入10\n\nQ1: 你想讀書嗎? A:");
+            
+            if (parseInt(a) > 10) {
+                alert("去讀書!");
+            } else {
+                let b = prompt("Q2: 你想要擁有美好的未來嗎? A:");
+                
+                if (parseInt(b) > 10) {
+                    alert("那就去讀書，追尋你美妙的未來吧!");
+                } else {
+                    let c = prompt("Q3: 那不讀書你想做的事對於你的未來有幫助嗎? A:");
+                    
+                    if (parseInt(c) > 10) {
+                        alert("那就放膽去尋找、鑽研你有興趣的領域吧!");
+                    } else {
+                        alert("那就去讀書");
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>讀書與未來選擇</h1>
+    <button onclick="askQuestion()">開始問答</button>
+</body>
+</html>
