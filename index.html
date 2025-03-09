@@ -3,33 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>讀書與未來選擇</title>
-    <script>
-        function askQuestion() {
-            let a = prompt("接下來的問題如果答案是肯定的就輸入11，否定就輸入10\n\nQ1: 你想讀書嗎? A:");
-            
-            if (parseInt(a) > 10) {
-                alert("去讀書!");
-            } else {
-                let b = prompt("Q2: 你想要擁有美好的未來嗎? A:");
-                
-                if (parseInt(b) > 10) {
-                    alert("那就去讀書，追尋你美妙的未來吧!");
-                } else {
-                    let c = prompt("Q3: 那不讀書你想做的事對於你的未來有幫助嗎? A:");
-                    
-                    if (parseInt(c) > 10) {
-                        alert("那就放膽去尋找、鑽研你有興趣的領域吧!");
-                    } else {
-                        alert("那就去讀書");
-                    }
-                }
-            }
+    <title>未來選擇模擬器</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
         }
-    </script>
+        #question-box {
+            display: none;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <h1>讀書與未來選擇</h1>
-    <button onclick="askQuestion()">開始問答</button>
+    <button id="start-btn">開始問答</button>
+    
+    <div id="question-box">
+        <p id="question"></p>
+        <button onclick="answer(11)">是</button>
+        <button onclick="answer(10)">否</button>
+    </div>
+    
+    <p id="result"></p>
+    
+    <script>
+        let step = 0;
+        const questions = [
+            "你想讀書嗎?",
+            "你想要擁有美好的未來嗎?",
+            "那不讀書你想做的事對於你的未來有幫助嗎?"
+        ];
+        
+        function startQuiz() {
+            step = 0;
+            document.getElementById("start-btn").style.display = "none";
+            document.getElementById("question-box").style.display = "block";
+            document.getElementById("result").innerText = "";
+            document.getElementById("question").innerText = questions[step];
+        }
+        
+        function answer(choice) {
+            if (step === 0 && choice === 11) {
+                document.getElementById("result").innerText = "去讀書!";
+                document.getElementById("question-box").style.display = "none";
+            } else if (step === 1 && choice === 11) {
+                document.getElementById("result").innerText = "那就去讀書，追尋你美妙的未來吧!";
+                document.getElementById("question-box").style.display = "none";
+            } else if (step === 2 && choice === 11) {
+                document.getElementById("result").innerText = "那就放膽去尋找、鑽研你有興趣的領域吧!";
+                document.getElementById("question-box").style.display = "none";
+            } else if (step < questions.length - 1) {
+                step++;
+                document.getElementById("question").innerText = questions[step];
+            } else {
+                document.getElementById("result").innerText = "那就去讀書";
+                document.getElementById("question-box").style.display = "none";
+            }
+        }
+        
+        document.getElementById("start-btn").addEventListener("click", startQuiz);
+    </script>
 </body>
 </html>
